@@ -2,6 +2,7 @@ const Assignment = require("../Models/AssignmentModel");
 const AssignAssignments = require("../Models/AssignAssignments");
 const User = require("../Models/UserModel");
 const jwt = require('jsonwebtoken');
+const mongoose = require('mongoose');
 
 module.exports = async (req, res) => {
     try {
@@ -33,21 +34,8 @@ module.exports = async (req, res) => {
             };
         }
 
-        // Sorting parameters
-        let sort = {};
-        if (req.query.sortBy === 'price') {
-            // Sorting by price
-            const order = req.query.order === 'desc' ? -1 : 1; // Default to ascending order
-            sort = { price: order };
-        } else if (req.query.sortBy === 'deadlineDate') {
-            // Sorting by deadline date
-            const order = req.query.order === 'desc' ? -1 : 1; // Default to ascending order
-            sort = { deadlineDate: order };
-        } else {
-            // Default sorting (if no sortBy is provided, sort by createdAt)
-            const order = req.query.order === 'desc' ? -1 : 1;
-            sort = { createdAt: order };
-        }
+        // Sorting by StartDate in descending order
+        const sort = { StartDate: -1 };
 
         const totalDocuments = await AssignAssignments.countDocuments(filter);
 
@@ -72,4 +60,3 @@ module.exports = async (req, res) => {
         res.status(500).json({ "message": error.message, "status": 500 });
     }
 };
-

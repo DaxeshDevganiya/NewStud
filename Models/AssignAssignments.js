@@ -14,6 +14,14 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  StartDate: {
+    type: Date,
+    
+  },
+  UploadDate: {
+    type: Date,
+   
+  },
   deadlineDate: {
     type: Date,
     required: true,

@@ -84,6 +84,7 @@ module.exports=async(req,res)=>{
       
         if(currentDate.isBefore(deadline)){
             postSolverAssignment.uploadedFiles=req.file.filename
+            postSolverAssignment.UploadDate=new Date();
             postSolverAssignment.isUploaded=1
             if(student.emailNotification=="true"){
               const msg = {

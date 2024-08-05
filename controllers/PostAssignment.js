@@ -177,7 +177,7 @@ module.exports=async(req,res)=>{
   
   }
               postAssignment.save();
-              const assign=new AssignAssignments({sid:sid,solveid:"-",assignmentName,deadlineDate,price:studPrice,solverPrice:solverPrice,companyPrice:companyPrice,minPrice:10,files:req.file.filename,industry,active:0})
+              const assign=new AssignAssignments({sid:sid,solveid:"-",assignmentName,deadlineDate,StartDate:new Date(),price:studPrice,solverPrice:solverPrice,companyPrice:companyPrice,minPrice:10,files:req.file.filename,industry,active:0})
               assign.save();
           }
           

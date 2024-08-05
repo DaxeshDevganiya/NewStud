@@ -5,6 +5,14 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  StartDate: {
+    type: Date,
+    required: true,
+  },
+  UploadDate: {
+    type: Date,
+    required: true,
+  },
   deadlineDate: {
     type: Date,
     required: true,

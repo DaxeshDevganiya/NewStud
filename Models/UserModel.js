@@ -82,6 +82,12 @@ const userSchema = new mongoose.Schema({
     default:"true"
 
   },
+  loginTime:{
+    type:Date
+  },
+  loginAttempt:{
+    type:Number,
+  },
   InAppNotification:{
     type:String,
     default:"true"

@@ -13,7 +13,8 @@ module.exports=async(req,res)=>{
                     console.log("token"+fcmToken);
                 if(user['loginOtp']==otp){
                     user.fcmToken=fcmToken
-
+                    user.loginTime=new Date();
+                    user.loginAttempt=1;
                         // user.loginOtp="-"
                         user.save();
                     const token = jwt.sign({ userId: user._id }, 'assignment', {

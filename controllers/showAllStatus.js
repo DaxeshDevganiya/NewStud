@@ -25,8 +25,25 @@ module.exports=async(req,res)=>{
             const numOfSolver=solver.length;
             const numOfStudent=studnet.length;
             const numOfAssignments=assignment.length;
+            const sum = await AssignAssignments.aggregate([
+                {
+                  $group: {
+                    _id: null, // Grouping by null to sum all documents
+                    totalCompanyPrice: { $sum: "$companyPrice" }, // Summing up the companyPrice field
+                  },
+                },
+              ]);
+              const income = await AssignAssignments.aggregate([
+                {
+                  $group: {
+                    _id: null, // Grouping by null to sum all documents
+                    totalCompanyPrice: { $sum: "$price" }, // Summing up the companyPrice field
+                  },
+                },
+              ]);
+              
             const numOfUser= user.length;
-            res.status(200).json({"solver":numOfSolver,"student":numOfStudent,"tasks":numOfAssignments,"user":numOfUser,"status":200})
+            res.status(200).json({"solver":numOfSolver,"student":numOfStudent,"tasks":numOfAssignments,"user":numOfUser,"profit":sum[0]?.totalCompanyPrice || 0,"income":income[0]?.totalCompanyPrice || 0,"status":200})
        
            
            

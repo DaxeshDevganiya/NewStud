@@ -110,6 +110,9 @@ const EmailVerification= require("./controllers/VerifyEmail");
 const ManageProfile=require("./controllers/manageProfile");
 const RefferalHistory=require("./controllers/RefferalHistory");
 const UpdatePaymentStatus=require("./controllers/updatePaymentStatus");
+const resendOtp=require("./controllers/resendOtp");
+const Users=require("./controllers/admin/Users");
+const SuccessRatio=require("./controllers/admin/successRatio");
 app.get("/login",loadlogin)
 app.get("/AllNum",AllNumbers)
 app.get("/signup",loadsignup)
@@ -123,6 +126,8 @@ app.post("/password/login",passwordChecker);
 app.post("/changePassword",changePassword)
 app.post("/forgotPassword",forgotPassword)
 app.post("/otp/login",optChecker);
+app.post("/resendOtp",resendOtp);
+app.get("/users",Users);
 // app.post("/login",userlogin);
 //app.post("/weblogin",webLogin); //this site route not use this for api testing.
 //app.post("/websignup",webSignup); //this site route not use this for api testing.
@@ -142,6 +147,7 @@ app.put("/sendAssSolvereq/:aid",verifyUser,sendAssSolvereq);
 app.delete("/delete/assignment/:did",deleteAssignment);
 app.post("/card",verifyToken,Card);
 app.get('/update-assignment-status/:id',UpdatePaymentStatus);
+app.get('/successRatio/:id',SuccessRatio);
 app.post('/create-intent', async (req, res) => {
   const { amount } = req.body;
 
